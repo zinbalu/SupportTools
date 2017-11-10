@@ -1,25 +1,26 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "support-tools",
+  "version": "0.1.0",
+  "description": "An application to automate most frequently performed tasks",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/zinbalu/SupportTools.git",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "support",
+    "tools",
+    "econt"
   ],
-  "author": "GitHub",
+  "author": "Fotti",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8"
   },
   "dependencies": {
-    "electron-json-storage": "^4.0.2"
+    "electron-json-storage": "^4.0.2",
+    "electron-shortcut-normalizer": "^1.0.0",
+    "highlight.js": "^9.12.0",
+    "screen": "^0.2.10"
   }
 }

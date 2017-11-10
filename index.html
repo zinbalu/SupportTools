@@ -8,23 +8,35 @@
 	<link rel="stylesheet" href="css/nativize.css">
 	<link rel="stylesheet" href="css/about.css">
 	<link rel="stylesheet" href="css/demo.css">
+	<link rel="stylesheet" href="css/shelf.css">
 	<link rel="stylesheet" href="css/github.css">
 	<link rel="stylesheet" href="css/section.css">
 	<link rel="stylesheet" href="css/variables.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="renderer-process/loadings/change-office-to.js"></script>
 </head>
 <body>
+<!-- region Навигация -->
 <nav class="nav js-nav is-shown">
 	<header class="nav-header">
-		<h1 class="nav-title">Electron <strong>API Demos</strong></h1>
-		<!--<svg class="nav-header-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-electron"></use></svg>-->
+		<h1 class="nav-title">Support <strong>Econt</strong> <img src="css/econt-logo.png" style="width: 50px; height: auto; margin-left: 15px; vertical-align: middle;"/></h1>
 	</header>
+	
+	<div class="nav-item u-category-loadings">
+		<h5 class="nav-category">
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>
+			Товарителници
+		</h5>
+		<button type="button" id="button-loadings" 		    data-section="loadings" 		class="nav-button is-selected"	>Проверки и действия с <em>товарителници</em></button>
+		<button type="button" id="button-loadings_reports"  data-section="loadings_reports" class="nav-button"				>Справки на база <em>товарителници</em></button>
+	</div>
 	
 	<div class="nav-item u-category-windows">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-windows"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>
 			Windows
 		</h5>
-		<button type="button" id="button-windows" data-section="windows" class="nav-button is-selected">Create and
+		<button type="button" id="button-windows" data-section="windows" class="nav-button">Create and
 			manage <em>windows</em></button>
 		<button type="button" id="button-crash-hang" data-section="crash-hang" class="nav-button">Handling window <em>crashes
 			and hangs</em></button>
@@ -32,7 +44,7 @@
 	
 	<div class="nav-item u-category-menu">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-menu"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-menu"></use></svg>
 			Menus
 		</h5>
 		<button type="button" id="button-menus" data-section="menus" class="nav-button">Customize <em>menus</em>
@@ -43,7 +55,7 @@
 	
 	<div class="nav-item u-category-native-ui">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-native-ui"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-native-ui"></use></svg>
 			Native User Interface</h5>
 		<button type="button" id="button-ex-links-file-manager" data-section="ex-links-file-manager" class="nav-button">
 			Open <em>external links</em> or system <em>file manager</em></button>
@@ -55,7 +67,7 @@
 	
 	<div class="nav-item u-category-communication">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-communication"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-communication"></use></svg>
 			Communication
 		</h5>
 		<button type="button" id="button-ipc" data-section="ipc" class="nav-button">Communicate between the <em>two
@@ -64,7 +76,7 @@
 	
 	<div class="nav-item u-category-system">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-system"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-system"></use></svg>
 			System
 		</h5>
 		<button type="button" id="button-app-sys-information" data-section="app-sys-information" class="nav-button">Get
@@ -77,7 +89,7 @@
 	
 	<div class="nav-item u-category-media">
 		<h5 class="nav-category">
-			<!--<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-media"></use></svg>-->
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-media"></use></svg>
 			Media
 		</h5>
 		<button type="button" id="button-pdf" data-section="pdf" class="nav-button"><em>Print</em> to PDF</button>
@@ -87,29 +99,107 @@
 	
 	<footer class="nav-footer">
 		<button type="button" id="button-about" data-modal="about" class="nav-footer-button">About</button>
-		<!--<a class="nav-footer-logo" href="https://github.com" aria-label="Homepage">-->
-		<!--<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-love"></use></svg>-->
-		<!--</a>-->
+		<a class="nav-footer-logo" href="https://github.com" aria-label="Homepage">
+		<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-love"></use></svg>
+		</a>
 	</footer>
 </nav>
-
+<!-- endregion Навигация -->
+<!-- region Работни секции -->
 <main class="content js-content is-shown">
-	<section id="windows-section" class="section js-section u-category-windows is-shown">
+	<!-- region Товарителници -->
+	<section id="loadings-section" class="section js-section u-category-loadings is-shown">
+		<!-- region Header -->
 		<header class="section-header">
 			<div class="section-wrapper">
 				<h1>
-					<!--<svg class="section-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/img/icons.svg#icon-windows"></use></svg>-->
+					<svg class="section-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>
+					Проверки и действия с товарителници
+				</h1>
+				<h3>Основен модул <code>товарителница</code> в системата на еконт.</h3>
+				<p>Не се прави: промяна на направление 'от'.</p>
+				<p>Отвори
+					<a href="http://econt-bg.com/">- КМ -<span class="u-visible-to-screen-reader"> в нов прозорец</span></a> в браузъра.</p>
+			</div>
+		</header>
+		<!-- endregion Header -->
+		<!-- region Смяна на направление -->
+		<div class="shelf">
+			<div class="shelf-wrapper">
+				<button id="change-office-to-shelf-toggle" class="js-container-target shelf-toggle-button">Промяна на направление (офис 'до')
+					<div class="shelf-meta u-avoid-clicks">Забележки: бла <span class="shelf-meta-divider">|</span> Става бързо</div>
+				</button>
+				<div class="shelf-box">
+					<div class="shelf-controls">
+						<label for="office-to-value-type"></label>
+						<select class="shelf-select" id="office-to-value-type" style="max-width: 75px;">
+							<option class="shelf-option" value="number">№</option>
+							<option class="shelf-option" value="id">ID</option>
+						</select>
+						<input  class="shelf-input"  id="office-to-loading-value"   placeholder="товарителница"/>
+						<input  class="shelf-input"  id="office-to-code" 			placeholder="офис"/>
+						<button class="shelf-button" id="change-office-to-submit">Смени</button>
+					</div>
+					<div class="shelf-response">
+						<h5>Резултат</h5>
+						<pre><code class="change-office-to-response"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			require('./renderer-process/loadings/change-office-to.js');
+		</script>
+		<!-- endregion Смяна на направление -->
+		<!-- region Деанулиране -->
+		<div class="shelf">
+			<div class="shelf-wrapper">
+				<button id="remove-zero-status-shelf-toggle" class="js-container-target shelf-toggle-button">Деанулиране
+					<div class="shelf-meta u-avoid-clicks">Забележки: няма <span class="shelf-meta-divider">|</span> балъшка работа</div>
+				</button>
+				<div class="shelf-box">
+					<div class="shelf-controls">
+						<label for="zero-status-value-type"></label>
+						<select class="shelf-select" id="zero-status-value-type" style="max-width: 75px;">
+							<option class="shelf-option" value="number">№</option>
+							<option class="shelf-option" value="id">ID</option>
+						</select>
+						<input  class="shelf-input"  id="zero-status-loading-value"  placeholder="товарителница"/>
+						<button class="shelf-button" id="zero-status-submit">Деанулирай</button>
+					</div>
+					<div class="shelf-response">
+						<h5>Резултат</h5>
+						<pre><code class="change-office-to-response"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			require('./renderer-process/loadings/change-office-to.js');
+		</script>
+		<!-- endregion Деанулиране -->
+	</section>
+	<!-- endregion Товарителници -->
+	
+	
+	
+	
+	
+	<section id="windows-section" class="section js-section u-category-windows">
+		<header class="section-header">
+			<div class="section-wrapper">
+				<h1>
+					<!--<svg class="section-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>-->
 					Create and Manage Windows
 				</h1>
-				<h3>The <code>BrowserWindow</code> module in Electron allows you to create a new browser window or
-					manage an existing one.</h3>
-				
-				<p>Each browser window is a separate process, known as the renderer process. This process, like the main
-					process that controls the life cycle of the app, has full access to the Node.js APIs.
-				
-				</p>
-				<p>Open the <a href="http://electron.atom.io/docs/api/browser-window">full API documentation<span
-						class="u-visible-to-screen-reader">(opens in new window)</span></a> in your browser.</p>
+				<h3>The <code>BrowserWindow</code> module in Electron allows you to create a new browser window or manage an existing one.</h3>
+				<p>Each browser window is a separate process, known as the renderer process. This process, like the main process that controls the life cycle of the app, has full access to the Node.js APIs. </p>
+				<p>Open the
+					<a href="http://electron.atom.io/docs/api/browser-window">
+						full API documentation<span class="u-visible-to-screen-reader">(opens in new window)</span>
+					</a> in your browser.</p>
 			</div>
 		</header>
 		
@@ -122,21 +212,17 @@
 					<div class="demo-controls">
 						<button class="demo-button" id="new-window">View Demo</button>
 					</div>
-					<p>The <code>BrowserWindow</code> module gives you the ability to create new windows in your app.
-						This main process module can be used from the renderer process with the <code>remote</code>
-						module, as is shown in this demo.</p>
-					
-					<p>There are a lot of options when creating a new window. A few are in this demo, but visit the <a
-							href="http://electron.atom.io/docs/api/browser-window">documentation<span
-							class="u-visible-to-screen-reader">(opens in new window)</span></a> for the full list.</p>
+					<p>The <code>BrowserWindow</code> module gives you the ability to create new windows in your app. This main process module can be used from the renderer process with the <code>remote</code> module, as is shown in this demo.</p>
+					<p>There are a lot of options when creating a new window. A few are in this demo, but visit the
+						<a href="http://electron.atom.io/docs/api/browser-window">
+							documentation<span class="u-visible-to-screen-reader">(opens in new window)</span>
+						</a> for the full list.</p>
 					<h5>Renderer Process</h5>
-					<pre><code data-path="renderer-process/windows/create-window.js"
-							   class="language-js hljs javascript"><span class="hljs-keyword">const</span> BrowserWindow = <span
-							class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).remote.BrowserWindow
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
-
-<span class="hljs-keyword">const</span> newWindowBtn = <span class="hljs-built_in">document</span>.getElementById(<span
-								class="hljs-string">'new-window'</span>)
+					<pre><code data-path="renderer-process/windows/create-window.js" class="language-js hljs javascript">
+						<span class="hljs-keyword">const</span> BrowserWindow = <span class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).remote.BrowserWindow
+						<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+						<span class="hljs-keyword">const</span> newWindowBtn = <span class="hljs-built_in">document</span>.getElementById(
+							<span class="hljs-string">'new-window'</span>)
 
 newWindowBtn.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span
 								class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
@@ -151,7 +237,8 @@ newWindowBtn.addEventListener(<span class="hljs-string">'click'</span>, <span cl
   win.loadURL(modalPath)
   win.show()
 })
-</code></pre>
+						</code>
+					</pre>
 					
 					<div class="demo-protip">
 						<h2>ProTip</h2>
@@ -353,10 +440,10 @@ newWindowBtn.addEventListener(<span class="hljs-string">'click'</span>, <span cl
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/windows/create-window')
-			require('./renderer-process/windows/manage-window')
-			require('./renderer-process/windows/using-window-events')
-			require('./renderer-process/windows/frameless-window')
+			require('./renderer-process/windows/create-window');
+			require('./renderer-process/windows/manage-window');
+			require('./renderer-process/windows/using-window-events');
+			require('./renderer-process/windows/frameless-window');
 		</script>
 	
 	</section>
@@ -367,7 +454,7 @@ newWindowBtn.addEventListener(<span class="hljs-string">'click'</span>, <span cl
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-windows"></use>
+							 xlink:href="css/icons.svg#icon-windows"></use>
 					</svg>
 					Handling Window Crashes and Hangs
 				</h1>
@@ -518,8 +605,8 @@ processHangBtn.addEventListener(<span class="hljs-string">'click'</span>, <span 
 		
 		
 		<script type="text/javascript">
-			require('./renderer-process/windows/process-crash')
-			require('./renderer-process/windows/process-hang')
+			require('./renderer-process/windows/process-crash');
+			require('./renderer-process/windows/process-hang');
 		</script>
 	
 	</section>
@@ -530,7 +617,7 @@ processHangBtn.addEventListener(<span class="hljs-string">'click'</span>, <span 
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-menu"></use>
+							 xlink:href="css/icons.svg#icon-menu"></use>
 					</svg>
 					Customize Menus
 				</h1>
@@ -939,7 +1026,7 @@ contextMenuBtn.addEventListener(<span class="hljs-string">'click'</span>, <span 
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-menu"></use>
+							 xlink:href="css/icons.svg#icon-menu"></use>
 					</svg>
 					Keyboard Shortcuts
 				</h1>
@@ -1046,7 +1133,7 @@ app.on(<span class="hljs-string">'will-quit'</span>, <span class="hljs-function"
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-native-ui"></use>
+							 xlink:href="css/icons.svg#icon-native-ui"></use>
 					</svg>
 					Open external links and the file manager
 				</h1>
@@ -1132,7 +1219,7 @@ exLinksBtn.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 							To do this, query the document and loop through each link and add a listener. This app uses
 							the code below which is located in <code>assets/ex-links.js</code>.</p>
 						<h5>Renderer Process</h5>
-						<pre><code data-path="assets/ex-links.js" class="language-js hljs javascript"><span
+						<pre><code data-path="js/ex-links.js" class="language-js hljs javascript"><span
 								class="hljs-keyword">const</span> shell = <span
 								class="hljs-built_in">require</span>(<span class="hljs-string">'electron'</span>).shell
 
@@ -1158,8 +1245,8 @@ exLinksBtn.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/native-ui/ex-links-file-manager/file-manager')
-			require('./renderer-process/native-ui/ex-links-file-manager/ex-links')
+			require('./renderer-process/native-ui/ex-links-file-manager/file-manager');
+			require('./renderer-process/native-ui/ex-links-file-manager/ex-links');
 		</script>
 	
 	</section>
@@ -1170,7 +1257,7 @@ exLinksBtn.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-native-ui"></use>
+							 xlink:href="css/icons.svg#icon-native-ui"></use>
 					</svg>
 					Use system dialogs
 				</h1>
@@ -1441,10 +1528,10 @@ ipc.on(<span class="hljs-string">'save-dialog'</span>, <span class="hljs-functio
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/native-ui/dialogs/open-file')
-			require('./renderer-process/native-ui/dialogs/error')
-			require('./renderer-process/native-ui/dialogs/information')
-			require('./renderer-process/native-ui/dialogs/save')
+			require('./renderer-process/native-ui/dialogs/open-file');
+			require('./renderer-process/native-ui/dialogs/error');
+			require('./renderer-process/native-ui/dialogs/information');
+			require('./renderer-process/native-ui/dialogs/save');
 		</script>
 	
 	</section>
@@ -1455,7 +1542,7 @@ ipc.on(<span class="hljs-string">'save-dialog'</span>, <span class="hljs-functio
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-native-ui"></use>
+							 xlink:href="css/icons.svg#icon-native-ui"></use>
 					</svg>
 					Tray
 				</h1>
@@ -1581,7 +1668,7 @@ ipc.on(<span class="hljs-string">'tray-removed'</span>, <span class="hljs-functi
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-communication"></use>
+							 xlink:href="css/icons.svg#icon-communication"></use>
 					</svg>
 					Communication between processes
 				</h1>
@@ -1788,9 +1875,9 @@ ipcRenderer.on(<span class="hljs-string">'factorial-computed'</span>, <span clas
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/communication/sync-msg')
-			require('./renderer-process/communication/async-msg')
-			require('./renderer-process/communication/invisible-msg')
+			require('./renderer-process/communication/sync-msg');
+			require('./renderer-process/communication/async-msg');
+			require('./renderer-process/communication/invisible-msg');
 		</script>
 	
 	</section>
@@ -1801,7 +1888,7 @@ ipcRenderer.on(<span class="hljs-string">'factorial-computed'</span>, <span clas
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-system"></use>
+							 xlink:href="css/icons.svg#icon-system"></use>
 					</svg>
 					Get app and system information
 				</h1>
@@ -2005,10 +2092,10 @@ screenInfoBtn.addEventListener(<span class="hljs-string">'click'</span>, <span c
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/system/app-information')
-			require('./renderer-process/system/version-information')
-			require('./renderer-process/system/sys-information')
-			require('./renderer-process/system/screen-information')
+			require('./renderer-process/system/app-information');
+			require('./renderer-process/system/version-information');
+			require('./renderer-process/system/sys-information');
+			require('./renderer-process/system/screen-information');
 		</script>
 	
 	</section>
@@ -2019,7 +2106,7 @@ screenInfoBtn.addEventListener(<span class="hljs-string">'click'</span>, <span c
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-system"></use>
+							 xlink:href="css/icons.svg#icon-system"></use>
 					</svg>
 					Clipboard
 				</h1>
@@ -2103,8 +2190,8 @@ pasteBtn.addEventListener(<span class="hljs-string">'click'</span>, <span class=
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/system/copy')
-			require('./renderer-process/system/paste')
+			require('./renderer-process/system/copy');
+			require('./renderer-process/system/paste');
 		</script>
 	
 	</section>
@@ -2115,7 +2202,7 @@ pasteBtn.addEventListener(<span class="hljs-string">'click'</span>, <span class=
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-system"></use>
+							 xlink:href="css/icons.svg#icon-system"></use>
 					</svg>
 					Protocol Handler
 				</h1>
@@ -2185,37 +2272,37 @@ app.on(<span class="hljs-string">'open-url'</span>, <span class="hljs-function">
 })
 </code></pre>
 					<h5>macOS plist</h5>
-					<pre><code class="language-xml language-plist hljs" data-path="assets/mac/info.plist"><span
-							class="php"><span class="hljs-meta">&lt;?</span>xml version=<span
-							class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span
-							class="hljs-meta">?&gt;</span></span>
-<span class="hljs-meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span
-		class="hljs-string">"1.0"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLTypes<span
-								class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLSchemes<span class="hljs-tag">&lt;/<span
-								class="hljs-name">key</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>electron-api-demos<span
-								class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLName<span class="hljs-tag">&lt;/<span
-								class="hljs-name">key</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>Electron API Demos Protocol<span
-								class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>ElectronTeamID<span
-								class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>VEKTX9H2N7<span class="hljs-tag">&lt;/<span
-								class="hljs-name">string</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span>
-</code></pre>
+					<!--<pre><code class="language-xml language-plist hljs" data-path="assets/mac/info.plist"><span-->
+							<!--class="php"><span class="hljs-meta">&lt;?</span>xml version=<span-->
+							<!--class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span-->
+							<!--class="hljs-meta">?&gt;</span></span>-->
+<!--<span class="hljs-meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>-->
+<!--<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span-->
+		<!--class="hljs-string">"1.0"</span>&gt;</span>-->
+<!--<span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>-->
+  <!--<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLTypes<span-->
+								<!--class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>-->
+  <!--<span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>-->
+    <!--<span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>-->
+      <!--<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLSchemes<span class="hljs-tag">&lt;/<span-->
+								<!--class="hljs-name">key</span>&gt;</span>-->
+      <!--<span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>-->
+        <!--<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>electron-api-demos<span-->
+								<!--class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>-->
+      <!--<span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>-->
+      <!--<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>CFBundleURLName<span class="hljs-tag">&lt;/<span-->
+								<!--class="hljs-name">key</span>&gt;</span>-->
+      <!--<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>Electron API Demos Protocol<span-->
+								<!--class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>-->
+    <!--<span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>-->
+  <!--<span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>-->
+  <!--<span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>ElectronTeamID<span-->
+								<!--class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>-->
+  <!--<span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>VEKTX9H2N7<span class="hljs-tag">&lt;/<span-->
+								<!--class="hljs-name">string</span>&gt;</span>-->
+<!--<span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>-->
+<!--<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span>-->
+<!--</code></pre>-->
 				</div>
 			</div>
 		</div>
@@ -2233,7 +2320,7 @@ app.on(<span class="hljs-string">'open-url'</span>, <span class="hljs-function">
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-media"></use>
+							 xlink:href="css/icons.svg#icon-media"></use>
 					</svg>
 					Print to PDF
 				</h1>
@@ -2316,8 +2403,8 @@ ipc.on(<span class="hljs-string">'print-to-pdf'</span>, <span class="hljs-functi
 						<h2>ProTip</h2>
 						<strong>Use a print style sheet.</strong>
 						<p>You can create a stylesheet targeting printing to optimize the look of what your users print.
-							Below is the stylesheet used in this app, located in <code>assets/css/print.css</code>.</p>
-						<pre><code data-path="assets/css/print.css" class="language-css hljs">@<span
+							Below is the stylesheet used in this app, located in <code>css/print.css</code>.</p>
+						<pre><code data-path="css/print.css" class="language-css hljs">@<span
 								class="hljs-keyword">media</span> print {
   <span class="hljs-selector-tag">body</span> {
     <span class="hljs-attribute">background</span>: none;
@@ -2374,7 +2461,7 @@ ipc.on(<span class="hljs-string">'print-to-pdf'</span>, <span class="hljs-functi
 				<h1>
 					<svg class="section-icon">
 						<use xmlns:xlink="http://www.w3.org/1999/xlink"
-							 xlink:href="assets/img/icons.svg#icon-media"></use>
+							 xlink:href="css/icons.svg#icon-media"></use>
 					</svg>
 					Take a screenshot
 				</h1>
@@ -2471,6 +2558,8 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 	
 	</section>
 </main>
+<!-- endregion Работни секции -->
+<!-- region Основни процеси -->
 <script>
 	require('./js/imports.js');
 	require('./js/ex-links.js');
@@ -2479,5 +2568,6 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 	require('./js/code-blocks.js');
 	require('./js/normalize-shortcuts.js');
 </script>
+<!-- endregion Основни процеси -->
 </body>
 </html>
