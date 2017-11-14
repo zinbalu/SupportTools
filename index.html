@@ -100,8 +100,9 @@
 	<footer class="nav-footer">
 		<button type="button" id="button-about" data-modal="about" class="nav-footer-button">About</button>
 		<a class="nav-footer-logo" href="https://github.com" aria-label="Homepage">
-		<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-love"></use></svg>
+			<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-love"></use></svg>
 		</a>
+		<button type="button" id="button-settings" data-section="settings" class="nav-footer-button">Настройки</button>
 	</footer>
 </nav>
 <!-- endregion Навигация -->
@@ -127,12 +128,12 @@
 		<div class="shelf">
 			<div class="shelf-wrapper">
 				<button id="change-office-to-shelf-toggle" class="js-container-target shelf-toggle-button">Промяна на направление (офис 'до')
-					<div class="shelf-meta u-avoid-clicks">Забележки: бла <span class="shelf-meta-divider">|</span> Става бързо</div>
+					<div class="shelf-meta u-avoid-clicks">Извършва се от служител на Еконт <span class="shelf-meta-divider">|</span> <a class="u-allow-clicks" href="https://itpartner.atlassian.net/wiki/spaces/EIS/pages/6979591">Упътване за процеса</a></div>
 				</button>
 				<div class="shelf-box">
 					<div class="shelf-controls">
 						<label for="office-to-value-type"></label>
-						<select class="shelf-select" id="office-to-value-type" style="max-width: 75px;">
+						<select class="shelf-select-75" id="office-to-value-type">
 							<option class="shelf-option" value="number">№</option>
 							<option class="shelf-option" value="id">ID</option>
 						</select>
@@ -156,12 +157,12 @@
 		<div class="shelf">
 			<div class="shelf-wrapper">
 				<button id="remove-zero-status-shelf-toggle" class="js-container-target shelf-toggle-button">Деанулиране
-					<div class="shelf-meta u-avoid-clicks">Забележки: няма <span class="shelf-meta-divider">|</span> балъшка работа</div>
+					<div class="shelf-meta u-avoid-clicks">Премахване на маркерите за анулирана товарителница</div>
 				</button>
 				<div class="shelf-box">
 					<div class="shelf-controls">
 						<label for="zero-status-value-type"></label>
-						<select class="shelf-select" id="zero-status-value-type" style="max-width: 75px;">
+						<select class="shelf-select-75" id="zero-status-value-type">
 							<option class="shelf-option" value="number">№</option>
 							<option class="shelf-option" value="id">ID</option>
 						</select>
@@ -170,7 +171,7 @@
 					</div>
 					<div class="shelf-response">
 						<h5>Резултат</h5>
-						<pre><code class="change-office-to-response"></code></pre>
+						<pre><code class="remove-zero-status-response"></code></pre>
 					</div>
 				</div>
 			</div>
@@ -2557,6 +2558,56 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 		</script>
 	
 	</section>
+	
+	
+	<section id="settings-section" class="section js-section u-category-loadings is-shown">
+		<!-- region Header -->
+		<header class="section-header">
+			<div class="section-wrapper">
+				<h1>
+					<svg class="section-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>
+					Настройки и конфигурации
+				</h1>
+			</div>
+		</header>
+		<!-- endregion Header -->
+		<!-- region Смяна на направление -->
+		<div class="shelf">
+			<div class="shelf-wrapper">
+				<button id="account-shelf-toggle" class="js-container-target shelf-toggle-button">Акаунт
+					<div class="shelf-meta u-avoid-clicks">Конфигуриране на администраторски акаунт за достъп до системата на Еконт</div>
+				</button>
+				<div class="shelf-box">
+					<div class="shelf-controls">
+						<label for="settings-url"></label>
+						<select class="shelf-select" id="settings-url" >
+							<option class="shelf-option" value="none" selected>Избери сървър</option>
+							<option class="shelf-option" value="admin.work-1.ee">Локално</option>
+							<option class="shelf-option" value="admin.dev.it-partner.bg/ee">Дев</option>
+							<option class="shelf-option" value="admin.demo.econt.com/ee">Демо</option>
+							<option class="shelf-option" value="admin.ee.econt.com">Реална</option>
+						</select>
+					</div>
+					<div class="shelf-controls">
+						<input  class="shelf-input"  id="account-username"   placeholder="потребителско име"/>
+						<input  type="password" class="shelf-input"  id="account-password" 	 placeholder="парола"/>
+						<!--<button type="button" class="shelf-button" style="margin-right: 0;" id="account-submit"><img src="css/Spinner.gif"/>Вход и запис</button>-->
+						<button type="button" class="shelf-button" style="margin-right: 0;" id="account-submit"><table><tr><td><img src="css/Spinner.gif"/></td>Обработка<td></td></tr></table></button>
+					</div>
+					<div class="shelf-response">
+						<h5>Резултат</h5>
+						<pre><code class="account-response"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			require('./renderer-process/system/settings.js');
+		</script>
+		<!-- endregion Смяна на направление -->
+	</section>
+
 </main>
 <!-- endregion Работни секции -->
 <!-- region Основни процеси -->

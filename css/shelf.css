@@ -37,6 +37,7 @@
     background-color: transparent;
     transition: border-color .12s;
     outline: none;
+    width: 100%;
 }
 
 .shelf-toggle-button:before,
@@ -66,6 +67,9 @@
 .shelf-toggle-button:focus:before,
 .shelf-toggle-button:focus:after {
     background-color: currentColor;
+}
+.shelf-toggle-button:hover {
+    background-color: hsl(194, 60%, 75%);
 }
 
 /* Meta info */
@@ -152,6 +156,10 @@
 .shelf-button:active {
     border-color: var(--color-border);
 }
+.shelf-button:disabled {
+    border-color: hsl(0,0%,80%);
+    color: hsl(0,0%,80%);
+}
 
 .shelf-input {
     flex: 1;
@@ -181,6 +189,24 @@
     background-color: transparent;
 }
 .shelf-select:focus {
+    outline: none;
+    border-color: hsl(0,0%,80%);
+    background-color: white;
+}
+
+.shelf-select-75 {
+    flex: 1;
+    height: 43px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 1.2em;
+    padding: .4em .8em;
+    color: inherit;
+    background-color: transparent;
+    max-width: 75px;
+}
+.shelf-select-75:focus {
     outline: none;
     border-color: hsl(0,0%,80%);
     background-color: white;

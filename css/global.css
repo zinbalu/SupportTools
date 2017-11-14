@@ -117,6 +117,9 @@ kbd {
 .u-avoid-clicks {
     pointer-events: none;
 }
+.u-allow-clicks {
+    pointer-events: all;
+}
 
 /* Visually hidden, but will be read by screen readers */
 .u-visible-to-screen-reader {
