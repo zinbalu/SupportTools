@@ -1,26 +1,23 @@
 const electron = require('electron');
 const path = require('path');
 const url = require('url');
+const app = electron.app; //Module to control application life.
+const BrowserWindow = electron.BrowserWindow; //Module to create native browser window.
 
-// Module to control application life.
-const app = electron.app;
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
+let mainWindow;	// Keep a global reference of the window object, if you don't, the window will
+				// be closed automatically when the JavaScript object is garbage collected.
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
 
 function createWindow() {
 	const mainScreen = electron.screen.getPrimaryDisplay();
 	const dimensions = mainScreen.size;
 	// console.log(dimensions.width + "x" + dimensions.height);
 	
-	// Create the browser window.
-	mainWindow = new BrowserWindow({width: dimensions.width, height: dimensions.height-50, icon:'css/econt-logo.png'});
+	
+	mainWindow = new BrowserWindow({width: dimensions.width, height: dimensions.height-50, icon:'css/econt-logo.png'}); //Create the browser window.
 	
 	// Remove the system menu
-	// mainWindow.setMenu(null);
+	mainWindow.setMenu(null);
 	
 	// and load the index.html of the app.
 	mainWindow.loadURL(url.format({
@@ -30,7 +27,7 @@ function createWindow() {
 	}));
 	
 	// Open the DevTools.
-	// mainWindow.webContents.openDevTools()
+	mainWindow.webContents.openDevTools();
 	
 	// Emitted when the window is closed.
 	mainWindow.on('closed', function () {

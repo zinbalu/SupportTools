@@ -4,7 +4,10 @@
   "description": "An application to automate most frequently performed tasks",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "repository": "https://github.com/zinbalu/SupportTools.git",
   "keywords": [
@@ -13,14 +16,44 @@
     "econt"
   ],
   "author": "Fotti",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "~1.7.8"
+    "electron": "latest",
+    "electron-builder": "latest"
   },
   "dependencies": {
+    "build": "^0.1.4",
     "electron-json-storage": "^4.0.2",
+    "electron-json-storage-sync": "^1.1.0",
     "electron-shortcut-normalizer": "^1.0.0",
     "highlight.js": "^9.12.0",
     "screen": "^0.2.10"
+  },
+  "build": {
+    "appId": "econtsupport",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
   }
 }

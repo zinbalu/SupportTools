@@ -13,9 +13,8 @@
 	<link rel="stylesheet" href="css/section.css">
 	<link rel="stylesheet" href="css/variables.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="renderer-process/loadings/change-office-to.js"></script>
 </head>
-<body>
+<body style="background-color: hsl(0, 0%, 96%);">
 <!-- region Навигация -->
 <nav class="nav js-nav is-shown">
 	<header class="nav-header">
@@ -27,8 +26,17 @@
 			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-windows"></use></svg>
 			Товарителници
 		</h5>
-		<button type="button" id="button-loadings" 		    data-section="loadings" 		class="nav-button is-selected"	>Проверки и действия с <em>товарителници</em></button>
-		<button type="button" id="button-loadings_reports"  data-section="loadings_reports" class="nav-button"				>Справки на база <em>товарителници</em></button>
+		<button type="button" id="button-loadings" 		    data-section="loadings" 		class="nav-button is-selected"	>Корекции по <em>товарителници</em></button>
+		<button type="button" id="button-loadings-reports"  data-section="loadings-reports" class="nav-button"				>Проверки по <em>товарителници</em></button>
+	</div>
+	
+	<div class="nav-item u-category-storage">
+		<h5 class="nav-category">
+			<svg class="nav-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-menu"></use></svg>
+			Наличности
+		</h5>
+		<button type="button" id="button-storage" 		    data-section="storage" 			class="nav-button"				>Корекции на <em>наличности</em></button>
+		<button type="button" id="button-storage-reports"   data-section="storage-reports" 	class="nav-button"				>Проверки на <em>наличности</em></button>
 	</div>
 	
 	<div class="nav-item u-category-windows">
@@ -98,18 +106,18 @@
 	</div>
 	
 	<footer class="nav-footer">
-		<button type="button" id="button-about" data-modal="about" class="nav-footer-button">About</button>
-		<a class="nav-footer-logo" href="https://github.com" aria-label="Homepage">
-			<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-love"></use></svg>
-		</a>
+		<!--<button type="button" id="button-about" data-modal="about" class="nav-footer-button">About</button>-->
+		<!--<a class="nav-footer-logo" href="https://github.com" aria-label="Homepage">-->
+			<!--<svg class="nav-footer-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-love"></use></svg>-->
+		<!--</a>-->
 		<button type="button" id="button-settings" data-section="settings" class="nav-footer-button">Настройки</button>
 	</footer>
 </nav>
 <!-- endregion Навигация -->
 <!-- region Работни секции -->
-<main class="content js-content is-shown">
+<main class="content js-content">
 	<!-- region Товарителници -->
-	<section id="loadings-section" class="section js-section u-category-loadings is-shown">
+	<section id="loadings-section" class="section js-section u-category-loadings">
 		<!-- region Header -->
 		<header class="section-header">
 			<div class="section-wrapper">
@@ -128,61 +136,140 @@
 		<div class="shelf">
 			<div class="shelf-wrapper">
 				<button id="change-office-to-shelf-toggle" class="js-container-target shelf-toggle-button">Промяна на направление (офис 'до')
-					<div class="shelf-meta u-avoid-clicks">Извършва се от служител на Еконт <span class="shelf-meta-divider">|</span> <a class="u-allow-clicks" href="https://itpartner.atlassian.net/wiki/spaces/EIS/pages/6979591">Упътване за процеса</a></div>
+					<div class="shelf-meta u-avoid-clicks" style="color: goldenrod; text-decoration: solid;"><b><i>Извършва се от служител на Еконт</i></b> <span class="shelf-meta-divider">|</span> <a class="u-allow-clicks" href="https://itpartner.atlassian.net/wiki/spaces/EIS/pages/6979591">Упътване за процеса</a></div>
 				</button>
 				<div class="shelf-box">
 					<div class="shelf-controls">
-						<label for="office-to-value-type"></label>
-						<select class="shelf-select-75" id="office-to-value-type">
-							<option class="shelf-option" value="number">№</option>
+						<label for="office-to-loading-value-type"></label>
+						<select class="shelf-select-90" id="office-to-loading-value-type">
+							<option class="shelf-option" value="num">№</option>
 							<option class="shelf-option" value="id">ID</option>
 						</select>
 						<input  class="shelf-input"  id="office-to-loading-value"   placeholder="товарителница"/>
-						<input  class="shelf-input"  id="office-to-code" 			placeholder="офис"/>
-						<button class="shelf-button" id="change-office-to-submit">Смени</button>
+						<label for="office-to-value-type"></label>
+						<select class="shelf-select-90" id="office-to-value-type">
+							<option class="shelf-option" value="code">Код</option>
+							<option class="shelf-option" value="id">ID</option>
+						</select>
+						<input  class="shelf-input"  id="office-to-value" 			placeholder="офис"/>
+						<button class="shelf-button" id="office-to-submit">Промени</button>
 					</div>
 					<div class="shelf-response">
 						<h5>Резултат</h5>
-						<pre><code class="change-office-to-response"></code></pre>
+						<pre><code class="office-to-response" id="office-to-response"></code></pre>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-			require('./renderer-process/loadings/change-office-to.js');
-		</script>
 		<!-- endregion Смяна на направление -->
 		<!-- region Деанулиране -->
 		<div class="shelf">
 			<div class="shelf-wrapper">
-				<button id="remove-zero-status-shelf-toggle" class="js-container-target shelf-toggle-button">Деанулиране
+				<button id="zero-status-shelf-toggle" class="js-container-target shelf-toggle-button">Деанулиране
 					<div class="shelf-meta u-avoid-clicks">Премахване на маркерите за анулирана товарителница</div>
 				</button>
 				<div class="shelf-box">
 					<div class="shelf-controls">
 						<label for="zero-status-value-type"></label>
-						<select class="shelf-select-75" id="zero-status-value-type">
-							<option class="shelf-option" value="number">№</option>
+						<select class="shelf-select-90" id="zero-status-value-type">
+							<option class="shelf-option" value="num">№</option>
 							<option class="shelf-option" value="id">ID</option>
 						</select>
-						<input  class="shelf-input"  id="zero-status-loading-value"  placeholder="товарителница"/>
+						<input  class="shelf-input"  id="zero-status-value"  placeholder="товарителница"/>
 						<button class="shelf-button" id="zero-status-submit">Деанулирай</button>
 					</div>
 					<div class="shelf-response">
 						<h5>Резултат</h5>
-						<pre><code class="remove-zero-status-response"></code></pre>
+						<pre><code class="zero-status-response" id="zero-status-response"></code></pre>
 					</div>
 				</div>
 			</div>
 		</div>
 		
 		<script type="text/javascript">
-			require('./renderer-process/loadings/change-office-to.js');
+			require('./renderer-process/loadings.js');
+		</script>
+		<!-- endregion Деанулиране -->
+	</section>
+	<section id="loadings-reports-section" class="section js-section u-category-loadings">
+		<!-- region Преглед на т-ца -->
+		<div class="shelf">
+			<div class="shelf-wrapper">
+				<button id="view-loading-shelf-toggle" class="js-container-target shelf-toggle-button">Преглед на товарителница
+					<div class="shelf-meta u-avoid-clicks">Отваря форма 'Товарителница' в КМ</div>
+				</button>
+				<div class="shelf-box">
+					<div class="shelf-controls">
+						<label for="view-loading-value-type"></label>
+						<select class="shelf-select-90" id="view-loading-value-type">
+							<option class="shelf-option" value="num">№</option>
+							<option class="shelf-option" value="id">ID</option>
+						</select>
+						<input  class="shelf-input"  id="view-loading-value"  placeholder="товарителница"/>
+						<button class="shelf-button" id="view-loading-submit">Отвори</button>
+					</div>
+					<div class="shelf-response">
+						<h5>Резултат</h5>
+						<pre><code class="view-loading-response" id="view-loading-response"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			require('./renderer-process/loadings-reports.js');
 		</script>
 		<!-- endregion Деанулиране -->
 	</section>
 	<!-- endregion Товарителници -->
+	
+	<!-- region Наличности -->
+	<section id="storage-section" class="section js-section u-category-loadings">
+		<!-- region Header -->
+		<header class="section-header">
+			<div class="section-wrapper">
+				<h1>
+					<svg class="section-icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="css/icons.svg#icon-menu"></use></svg>
+					Проверки и действия с наличности
+				</h1>
+			</div>
+		</header>
+		<!-- endregion Header -->
+		<!-- region Премахване -->
+		<div class="shelf">
+			<div class="shelf-wrapper">
+				<button id="remove-from-storage-shelf-toggle" class="js-container-target shelf-toggle-button">Премахване от наличности
+					<div class="shelf-meta u-avoid-clicks"><b><i>Изтриване на редове от storage</i></b></div>
+				</button>
+				<div class="shelf-box">
+					<div class="shelf-controls">
+						<label for="remove-from-storage-category"></label>
+						<select class="shelf-select-130" id="remove-from-storage-category">
+							<option class="shelf-option" value="loading">Т-ца</option>
+							<option class="shelf-option" value="office">Офис</option>
+							<option class="shelf-option" value="person">Служител</option>
+						</select>
+						<label for="remove-from-storage-value-type"></label>
+						<select class="shelf-select-130" id="remove-from-storage-value-type">
+							<option class="shelf-option" value="codeNum">Код/№</option>
+							<option class="shelf-option" value="id">ID</option>
+						</select>
+						<input  class="shelf-input"  id="remove-from-storage-value" placeholder="офис"/>
+						<button class="shelf-button" id="remove-from-storage-submit">Премахване</button>
+					</div>
+					<div class="shelf-response">
+						<h5>Резултат</h5>
+						<pre><code class="office-to-response" id="remove-from-storage-response"></code></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- endregion Премахване -->
+		<script type="text/javascript">
+			require('./renderer-process/storage.js');
+		</script>
+	</section>
+	<!-- endregion Наличности -->
 	
 	
 	
@@ -2579,8 +2666,8 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 				</button>
 				<div class="shelf-box">
 					<div class="shelf-controls">
-						<label for="settings-url"></label>
-						<select class="shelf-select" id="settings-url" >
+						<label for="account-server"></label>
+						<select class="shelf-select" id="account-server" >
 							<option class="shelf-option" value="none" selected>Избери сървър</option>
 							<option class="shelf-option" value="admin.work-1.ee">Локално</option>
 							<option class="shelf-option" value="admin.dev.it-partner.bg/ee">Дев</option>
@@ -2592,7 +2679,7 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 						<input  class="shelf-input"  id="account-username"   placeholder="потребителско име"/>
 						<input  type="password" class="shelf-input"  id="account-password" 	 placeholder="парола"/>
 						<!--<button type="button" class="shelf-button" style="margin-right: 0;" id="account-submit"><img src="css/Spinner.gif"/>Вход и запис</button>-->
-						<button type="button" class="shelf-button" style="margin-right: 0;" id="account-submit"><table><tr><td><img src="css/Spinner.gif"/></td>Обработка<td></td></tr></table></button>
+						<button type="button" class="shelf-button" style="margin-right: 0; max-height: 42px;" id="account-submit">Вход и запис</button>
 					</div>
 					<div class="shelf-response">
 						<h5>Резултат</h5>
@@ -2618,6 +2705,7 @@ screenshot.addEventListener(<span class="hljs-string">'click'</span>, <span clas
 	require('./js/demo-btns.js');
 	require('./js/code-blocks.js');
 	require('./js/normalize-shortcuts.js');
+	require('./renderer-process/loadings.js');
 </script>
 <!-- endregion Основни процеси -->
 </body>

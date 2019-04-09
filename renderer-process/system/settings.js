@@ -1,16 +1,19 @@
 const storage = require('electron-json-storage');
 const username = document.getElementById('account-username');
 const password = document.getElementById('account-password');
-const url = document.getElementById('settings-url');
-const accountButton = document.getElementById('account-submit');
-if(accountButton) accountButton.addEventListener('click', function (event) {
+const server = document.getElementById('account-server');
+const submitButton = document.getElementById('account-submit');
+if(submitButton) submitButton.addEventListener('click', function (event) {
 	if(event.type === 'click') {
-		debugger;
-		accountButton.disabled = true;
-		let oldValue = accountButton.innerHTML;
-		accountButton.innerHTML = "<img url='"+__dirname+"/../../css/Spinner.gif' class='spinner'/>Обработка";
+		let responseArea = jQuery(".account-response")[0];
+		let oldValue = submitButton.innerHTML;
+		submitButton.disabled = true;
+		submitButton.innerHTML = 	'<div style="white-space: nowrap; margin-left: -21px; margin-top: -7px;">' +
+										'<img src="css/loading.gif" style="vertical-align: middle;"/>' +
+										'<span style="vertical-align: middle;">Обработка</span>' +
+									'</div>';
 		$.ajax({
-			url: "http://"+url.value+"/api.php?target=ApiSupportTools.checkLogin",
+			url: "http://"+server.value+"/api.php?target=ApiSupportTools.checkLogin",
 			dataType: "json",
 			type: "POST",
 			data: JSON.stringify({'test': 'me'}),
@@ -24,27 +27,30 @@ if(accountButton) accountButton.addEventListener('click', function (event) {
 				// xhr.setRequestHeader('Cookie', "XDEBUG_SESSION=PHPSTORM");
 			},
 			success: function (response) {
+				if(response.status !== 'Success') console.log(response.status);
 				const account = {
 					username: username.value,
 					password: password.value,
-					url: url.value
+					server: server.value
 				};
 				storage.set('account', account, function (err) {
 					if (err) return console.error(err)
 				});
-				accountResponse[0].innerHTML = "Успешно запазихте информацията.";
-				accountResponse[0].parentElement.parentElement.style.display = 'block';
-				accountButton.disabled = false;
-				accountButton.value = oldValue;
-				accountButton.image = '';
+				responseArea.innerHTML = "Успешно запазихте информацията.";
+				responseAreaPre = responseArea.parentElement;
+				if(responseAreaPre.classList.contains('shelf-response-error')) responseAreaPre.classList.remove('shelf-response-error');
+				responseAreaPre.parentElement.style.display = 'block';
+				submitButton.disabled = false;
+				submitButton.innerHTML = oldValue;
 			},
 			error: function (response) {
 				const error = JSON.parse(response.responseText);
-				let accountResponse = jQuery(".account-response");
-				accountResponse[0].innerHTML = error.message+" ("+error.type+")<br>Грешка: "+error.log_id+"<br>Заявка: "+error.requestLogID;
-				accountResponse[0].parentElement.parentElement.style.display = 'block';
-				accountButton.disabled = false;
-				accountButton.innerHTML = oldValue;
+				responseArea.innerHTML = error.message+" ("+error.type+")<br>Грешка: "+error.log_id+"<br>Заявка: "+error.requestLogID;
+				responseAreaPre = responseArea.parentElement;
+				if(!responseAreaPre.classList.contains('shelf-response-error')) responseAreaPre.classList.add('shelf-response-error');
+				responseAreaPre.parentElement.style.display = 'block';
+				submitButton.disabled = false;
+				submitButton.innerHTML = oldValue;
 			}
 		});
 	}

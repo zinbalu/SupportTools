@@ -69,7 +69,7 @@
     background-color: currentColor;
 }
 .shelf-toggle-button:hover {
-    background-color: hsl(194, 60%, 75%);
+    background-color: hsl(0, 0%, 75%);
 }
 
 /* Meta info */
@@ -146,6 +146,7 @@
     font-size: 1.2em;
     padding: .4em 1.2em;
     width: 150px;
+    max-height: 42px;
     color: inherit;
     background-color: transparent;
 }
@@ -179,7 +180,7 @@
 
 .shelf-select {
     flex: 1;
-    height: 43px;
+    height: 42px;
     border: 2px solid var(--color-border);
     border-radius: 4px;
     font: inherit;
@@ -194,9 +195,9 @@
     background-color: white;
 }
 
-.shelf-select-75 {
+.shelf-select-90 {
     flex: 1;
-    height: 43px;
+    height: 42px;
     border: 2px solid var(--color-border);
     border-radius: 4px;
     font: inherit;
@@ -204,9 +205,27 @@
     padding: .4em .8em;
     color: inherit;
     background-color: transparent;
-    max-width: 75px;
+    max-width: 90px;
 }
-.shelf-select-75:focus {
+.shelf-select-90:focus {
+    outline: none;
+    border-color: hsl(0,0%,80%);
+    background-color: white;
+}
+
+.shelf-select-130 {
+    flex: 1;
+    height: 42px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    font: inherit;
+    font-size: 1.2em;
+    padding: .4em .8em;
+    color: inherit;
+    background-color: transparent;
+    max-width: 130px;
+}
+.shelf-select-1300:focus {
     outline: none;
     border-color: hsl(0,0%,80%);
     background-color: white;
@@ -233,6 +252,11 @@
     flex: 1;
     word-break: break-word;
     display: none;
+}
+
+.shelf-response-error {
+    border-color: hsl(350, 100%, 50%);
+    border-width: 2px;
 }
 
 .smooth-appear {

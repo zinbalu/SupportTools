@@ -23,5 +23,5 @@ storage.get('account', function (err, account) {
 	if(err) return console.error(err);
 	if(account.username && account.username.length) document.getElementById('account-username').value = account.username;
 	if(account.password && account.password.length) document.getElementById('account-password').value = account.password;
-	if(account.url 		&& account.url.length) 		document.getElementById('settings-url').value 	  = account.url;
+	if(account.server 	&& account.server.length) 	document.getElementById('account-server').value   = account.server;
 });
